@@ -63,3 +63,45 @@ PSU-Sphere is a Django-based web application tailored for Palawan State Universi
 ### 📬 Project Repository
 Check out the source code and updates here:  
 👉 [PSU-Sphere Repository](https://github.com/AllanDexter14/PSU-Sphere)
+
+---
+
+## Running with Docker
+
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop) installed and running
+
+### Option A: Build from source (developers)
+```bash
+git clone <this-repo-url>
+cd <repo-folder>
+docker compose up -d --build
+```
+Open http://localhost:8000
+
+### Option B: Run the prebuilt image from Docker Hub (client)
+The image is at `boben19/django-app:latest`.
+```bash
+cd for_client
+docker compose up -d
+```
+Open http://localhost:8000
+
+### First-time setup
+```bash
+docker compose exec web python manage.py createsuperuser
+```
+
+### Useful commands
+```bash
+docker compose ps          # check status
+docker compose logs -f web # view logs
+docker compose down        # stop and remove containers
+```
+
+> Note: open **http://localhost:8000**, not `http://0.0.0.0:8000`.
+
+### Social login (optional)
+Copy `.env.example` to `.env` (next to `docker-compose.yml`) and fill in your own Google / GitHub OAuth credentials, then run `docker compose up -d --force-recreate`.
+Callback URLs: `http://localhost:8000/accounts/google/login/callback/` and `http://localhost:8000/accounts/github/login/callback/`.
+Without these, username/password login still works.

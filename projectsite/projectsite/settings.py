@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-@hx28ul6t*r#9dm2+gyq3l5sswlgi^_x*jp(@h5%8*#754)=uq
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['AllanDexter14.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['AllanDexter14.pythonanywhere.com', '127.0.0.1', 'localhost', '[::1]']
 
 
 # Application definition
@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.github',
 ]
 
-SITE_ID = 2
+SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
@@ -170,3 +170,24 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+# --- Social login (Google / GitHub), credentials come from environment ---
+SOCIALACCOUNT_PROVIDERS = {}
+if os.environ.get("GOOGLE_CLIENT_ID"):
+    SOCIALACCOUNT_PROVIDERS["google"] = {
+        "APPS": [{
+            "client_id": os.environ["GOOGLE_CLIENT_ID"],
+            "secret": os.environ.get("GOOGLE_CLIENT_SECRET", ""),
+            "key": "",
+        }],
+        "SCOPE": ["profile", "email"],
+    }
+if os.environ.get("GITHUB_CLIENT_ID"):
+    SOCIALACCOUNT_PROVIDERS["github"] = {
+        "APPS": [{
+            "client_id": os.environ["GITHUB_CLIENT_ID"],
+            "secret": os.environ.get("GITHUB_CLIENT_SECRET", ""),
+            "key": "",
+        }],
+        "SCOPE": ["user:email"],
+    }

@@ -15,7 +15,7 @@
 	<div class="wrapper">
 		<div class="main-header">
 			<div class="logo-header">
-				<a href="index.html" class="logo">
+				<a href="{% url 'home' %}" class="logo">
 					Ready Dashboard
 				</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button" data-toggle="collapse" data-target="collapse" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,7 +112,7 @@
 										<div class="u-img"><img src="{% static 'img/profile.jpg' %}" alt="user"></div>
 										<div class="u-text">
 											<h4>{{ request.user.username }}</h4>
-											<p class="text-muted">hello@themekita.com</p><a href="profile.html" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
+											<p class="text-muted">hello@themekita.com</p><a href="#" class="btn btn-rounded btn-danger btn-sm">View Profile</a></div>
 										</div>
 									</li>
 									<div class="dropdown-divider"></div>
@@ -203,12 +203,6 @@
 								<i class="la la-font"></i>
 								<p>Program</p>
 								<span class="badge badge-danger">25</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a href="icons.html">
-								<i class="la la-fonticons"></i>
-								<p>Icons</p>
 							</a>
 						</li>
 						<li class="nav-item update-pro">
